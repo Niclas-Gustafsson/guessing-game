@@ -33,7 +33,7 @@ impl Game {
         self.state = state;
     }
     //Reset current game object.
-    pub fn new_game(&mut self) {
+    fn new_game(&mut self) {
         self.answer = 0;
         self.guess = 0;
         self.total_guesses = 5;
@@ -69,7 +69,7 @@ impl Game {
 
 
     //Takes user input and tries parsing to number.
-    pub fn make_guess(&mut self){
+    fn make_guess(&mut self){
         let mut guess = String::new();
         
         io::stdin().read_line(&mut guess).expect("Failed to read guess.");
@@ -99,7 +99,7 @@ impl Game {
            Err("Couldn't parse number.")
         }
     }
-    pub fn ask_for_new_game(&mut self) {
+    fn ask_for_new_game(&mut self) {
         let mut answer = String::new();
         println!("Do you want to play again? Type y/yes, n/no");
         io::stdin().read_line(&mut answer).expect("Failed to read guess.");
@@ -115,7 +115,7 @@ impl Game {
     }
 
 
-    pub fn check_guess(&mut self) {
+   fn check_guess(&mut self) {
         match self.guess.cmp(&self.answer) {
             Ordering::Less => println!("{}", "Too small".red()),
             Ordering::Greater => println!("{}", "Too big".red()),
